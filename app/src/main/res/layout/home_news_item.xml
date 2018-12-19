@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content" android:background="#f5f5f5">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="240dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="@dimen/activity_horizontal_margin"
+            app:cardBackgroundColor="@android:color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="55dp"
+            android:layout_marginBottom="50dp" app:layout_constraintVertical_bias="0.0"
+    >
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="match_parent">
+            <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="240dp"
+                    android:id="@+id/imageView" app:srcCompat="@drawable/header_cover"
+                    android:adjustViewBounds="true" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:scaleType="centerCrop"/>
+            <TextView
+                    android:text="Фотосессия и промо ролик"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/titleTextVew"
+                    android:layout_alignParentStart="true" android:layout_marginStart="20dp"
+                    android:layout_alignParentTop="true" android:textSize="28sp"
+                    android:textColor="@android:color/white" android:layout_alignParentEnd="true"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="20dp" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" android:textStyle="bold"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
