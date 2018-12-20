@@ -11,11 +11,11 @@ class SharedViewModel: ViewModel() {
 
     private val newsQuery = DataService.REF_NEWS_HEADER.whereEqualTo("isPublished", true)
     private val testimonials = DataService.REF_TESTIMONIALS.whereEqualTo("isPublished", true)
-    private val newsliveData = FirebaseQueryLiveData(newsQuery)
+    private val newsLiveData = FirebaseQueryLiveData(newsQuery)
     private val testimonialsLiveData = FirebaseQueryLiveData(testimonials)
 
     fun getNewsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
-        return newsliveData
+        return newsLiveData
     }
 
     fun getTestimonialsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
