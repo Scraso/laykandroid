@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "421978813046",
+    "firebase_url": "https://layk-development.firebaseio.com",
+    "project_id": "layk-development",
+    "storage_bucket": "layk-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421978813046:android:93dd0dcfda8afa18",
+        "android_client_info": {
+          "package_name": "com.example.tigran.laykandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421978813046-sua8u06026f71hbh28iiqo3p49dfe3em.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWUGAeTJFRXY49Xc2EXCRimOATql_V0TI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

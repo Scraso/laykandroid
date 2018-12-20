@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
+            app:startDestination="@id/nav_home">
+
+    <fragment android:id="@+id/nav_shop" android:name="com.example.tigran.laykandroid.shopFragment.ShopFragment"
+              tools:layout="@layout/fragment_shop">
+        <action
+                android:id="@+id/next_action"
+                app:destination="@+id/product_list_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
+
+    </fragment>
+    <fragment android:id="@+id/product_list_dest"
+              android:name="com.example.tigran.laykandroid.shopFragment.ProductListFragment">
+        <action
+                android:id="@+id/toItemDetailsFragmentAction"
+                app:destination="@+id/itemDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
+        <argument android:name="category" app:argType="string" android:defaultValue='""'/>
+    </fragment>
+    <fragment android:id="@+id/nav_home" android:name="com.example.tigran.laykandroid.homeFragment.MenuFragment"
+              tools:layout="@layout/fragment_menu"/>
+    <fragment android:id="@+id/nav_cart" android:name="com.example.tigran.laykandroid.cartFragment.CartFragment"
+              tools:layout="@layout/fragment_cart"/>
+    <fragment android:id="@+id/nav_history"
+              android:name="com.example.tigran.laykandroid.historyFragment.HistoryFragment"
+              tools:layout="@layout/fragment_history"/>
+    <fragment android:id="@+id/nav_information"
+              android:name="com.example.tigran.laykandroid.informationFragment.InformationFragment"
+              tools:layout="@layout/fragment_information"/>
+    <fragment android:id="@+id/itemDetailsFragment"
+              android:name="com.example.tigran.laykandroid.shopFragment.ItemDetailsFragment"
+              tools:layout="@layout/fragment_item_details">
+    </fragment>
+</navigation>
