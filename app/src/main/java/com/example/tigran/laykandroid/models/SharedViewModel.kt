@@ -22,10 +22,12 @@ class SharedViewModel: ViewModel() {
         return testimonialsLiveData
     }
 
-    val selected = MutableLiveData<ArrayList<CartItem>>()
+    private var cartItems = ArrayList<CartItem>()
+    var cartItemLiveData = MutableLiveData<List<CartItem>>()
 
     fun select(item: CartItem) {
-        selected.value?.add(item)
+        cartItems.add(item)
+        cartItemLiveData.value = cartItems
     }
 
 

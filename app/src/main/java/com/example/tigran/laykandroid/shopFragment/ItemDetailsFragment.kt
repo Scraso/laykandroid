@@ -28,8 +28,6 @@ class ItemDetailsFragment : Fragment(), View.OnTouchListener {
     val buttons = ArrayList<Button>()
     private var selectedBtnSizeTitle: String? = ""
 
-    private lateinit var itemSelector: Selector
-
     private lateinit var model: SharedViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

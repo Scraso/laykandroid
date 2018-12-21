@@ -53,7 +53,6 @@ class ProductCustomViewAdapter(private val products: ArrayList<Product>, private
         circularProgressDrawable.centerRadius = 30f
         circularProgressDrawable.start()
 
-
         Glide
             .with(context)
             .apply { RequestOptions()

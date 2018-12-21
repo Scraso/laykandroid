@@ -1,6 +1,5 @@
 package com.example.tigran.laykandroid.cartFragment
 
-import android.content.ClipData
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,7 +19,8 @@ class CartFragment : Fragment() {
 
     private lateinit var model: SharedViewModel
 
-    var listOfItems = mutableListOf<CartItem>()
+    private var listOfItems = mutableListOf<CartItem>()
+    private val cartCustomAdapter = CartCustomViewAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_cart, container, false)
@@ -30,47 +30,25 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initView()
-
+        // Set observer for the live data. as soon as data changed, we set the data to setItemList which calls
+        // notifier to update recyclerView with the newest data
         model = activity?.run {
             ViewModelProviders.of(this).get(SharedViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
-        model.selected.observe(this, Observer {
-            Log.d(TAG, "Item list is $it")
-            listOfItems = it
+        model.cartItemLiveData.observe(this, Observer { item ->
+            listOfItems = item.toMutableList()
+            if (context != null) {
+                cartCustomAdapter.setItemList(listOfItems)
+                Log.d(TAG, "Item list size is ${item.size} and List of Items size is ${listOfItems.size}") }
+
         })
+
     }
 
     private fun initView() {
         recyclerCartView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
-
-        val cartCustomAdapter = CartCustomViewAdapter()
         recyclerCartView.adapter = cartCustomAdapter
-        cartCustomAdapter.setItemList(listOfItems)
+        if (context != null ) cartCustomAdapter.context = context!!
     }
 
-    private fun generateItemData(): List<CartItem> {
-        val listOfItems = mutableListOf<CartItem>()
-
-        var itemModel = CartItem(1250, "Сlassic Black", "00006", "L", 5, "", "")
-        listOfItems.add(itemModel)
-
-        itemModel = CartItem(1250, "Jobox Lux", "00004", "M", 5, "", "")
-        listOfItems.add(itemModel)
-
-        itemModel = CartItem(1250, "Yosimitto Yellow Sport", "00003", "L", 5, "", "")
-        listOfItems.add(itemModel)
-
-        itemModel = CartItem(1250, "Yosimitto Yellow Sport", "00003", "L", 5, "", "")
-        listOfItems.add(itemModel)
-
-        itemModel = CartItem(1250, "Yosimitto Yellow Sport", "00003", "L", 5, "", "")
-        listOfItems.add(itemModel)
-
-        itemModel = CartItem(1250, "Yosimitto Yellow Sport", "00003", "L", 5, "", "")
-        listOfItems.add(itemModel)
-
-
-        return listOfItems
-
-    }
 }
