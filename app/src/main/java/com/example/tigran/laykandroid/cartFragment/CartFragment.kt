@@ -25,6 +25,8 @@ class CartFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_cart, container, false)
         activity?.title = "Корзина"
+
+
         return rootView
     }
 
@@ -48,6 +50,12 @@ class CartFragment : Fragment() {
     private fun initView() {
         recyclerCartView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         recyclerCartView.adapter = cartCustomAdapter
+        // Add divider
+        val decoration = androidx.recyclerview.widget.DividerItemDecoration(
+            context,
+            androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+        )
+        recyclerCartView.addItemDecoration(decoration)
         if (context != null ) cartCustomAdapter.context = context!!
     }
 
