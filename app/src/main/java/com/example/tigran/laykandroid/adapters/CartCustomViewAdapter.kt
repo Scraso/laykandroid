@@ -77,7 +77,8 @@ class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<
      */
     enum class CellType {
         ITEM,
-        TOTAL
+        TOTAL,
+        EMPTY_VIEW
     }
 
     fun setItemList(listOfItems: List<CartItem>) {
@@ -106,10 +107,15 @@ class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<
         }
     }
 
-    class TotalAmountViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class TotalAmountViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
         fun configureView() {
-            itemView.totalAmountTextView.text = "1250 грн"
+
+            val cost = listOfItems.map {
+                it.count * it.price
+            }.sum()
+
+            itemView.totalAmountTextView.text = "$cost грн"
         }
     }
 
