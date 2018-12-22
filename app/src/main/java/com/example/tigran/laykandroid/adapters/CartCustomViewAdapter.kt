@@ -14,7 +14,6 @@ import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.CartItem
 import kotlinx.android.synthetic.main.cart_item_amount_view.view.*
 import kotlinx.android.synthetic.main.cart_item_view.view.*
-import kotlinx.android.synthetic.main.home_testimonials_item.view.*
 
 
 class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<RecyclerView.ViewHolder>() {

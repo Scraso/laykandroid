@@ -14,7 +14,7 @@
             android:layout_marginBottom="17dp" android:textSize="18sp" android:textColor="@android:color/white"
             android:textStyle="bold"/>
     <TextView
-            android:text="1500 грн"
+            android:text="0 грн"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/totalAmountTextView" android:layout_marginEnd="20dp"
