@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.cart_item_amount_view.view.*
 import kotlinx.android.synthetic.main.cart_item_view.view.*
 
 
-class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
     private var listOfItems = listOf<CartItem>()
     lateinit var context: Context
@@ -76,8 +77,7 @@ class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<
      */
     enum class CellType {
         ITEM,
-        TOTAL,
-        EMPTY_VIEW
+        TOTAL
     }
 
     fun setItemList(listOfItems: List<CartItem>) {
@@ -86,14 +86,38 @@ class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<
     }
 
 
-    inner class CartItemViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         @SuppressLint("SetTextI18n")
         fun configureView(cartItemData: CartItem) {
             itemView.itemNameTextView.text = cartItemData.name
             itemView.itemRefTextView.text = "Код товара: ${cartItemData.ref}"
             itemView.itemPriceTextView.text = "${cartItemData.price} грн"
 
-            Log.d(TAG, "Context is $context")
+            itemView.plusBtn.setOnClickListener {
+                listOfItems.map { item ->
+                    if (item.avatarImageUrl == cartItemData.avatarImageUrl && item.size == cartItemData.size) {
+                        item.count += 1
+                    }
+                    itemView.countItemTextView.text = item.count.toString()
+                    notifyDataSetChanged()
+                }
+            }
+
+            itemView.minusBtn.setOnClickListener {
+                listOfItems.map { item ->
+                    if (item.avatarImageUrl == cartItemData.avatarImageUrl && item.size == cartItemData.size) {
+                        if (item.count == 1) {
+                            item.count = 1
+                        } else {
+                            item.count -= 1
+                        }
+                    }
+                    itemView.countItemTextView.text = item.count.toString()
+                    notifyDataSetChanged()
+                }
+            }
+
 
 
             Glide
@@ -102,11 +126,14 @@ class CartCustomViewAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<
                     .fitCenter()}
                 .load(cartItemData.avatarImageUrl)
                 .into(itemView.itemImageView)
+            
+            Log.d(TAG, "ITEM COUNT IS ${cartItemData.count}")
 
         }
+
     }
 
-    inner class TotalAmountViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class TotalAmountViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
         fun configureView() {
 

@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : Fragment() {
 
+    private val LOG_TAG = "CartFragment"
+
     private lateinit var model: SharedViewModel
 
     private var listOfItems = mutableListOf<CartItem>()
@@ -41,8 +43,7 @@ class CartFragment : Fragment() {
             listOfItems = item.toMutableList()
             if (context != null) {
                 cartCustomAdapter.setItemList(listOfItems)
-                Log.d(TAG, "Item list size is ${item.size} and List of Items size is ${listOfItems.size}") }
-
+            }
         })
 
     }
@@ -56,7 +57,7 @@ class CartFragment : Fragment() {
             androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
         )
         recyclerCartView.addItemDecoration(decoration)
-        if (context != null ) cartCustomAdapter.context = context!!
+        if (context != null) cartCustomAdapter.context = context!!
     }
 
 }

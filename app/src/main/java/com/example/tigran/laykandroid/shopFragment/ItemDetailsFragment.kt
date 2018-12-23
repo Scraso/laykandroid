@@ -128,7 +128,6 @@ class ItemDetailsFragment : Fragment(), View.OnTouchListener {
                 "",
                 product.avatarImageUrl
             )
-
             model.select(item)
 
             Toast.makeText(

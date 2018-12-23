@@ -5,7 +5,7 @@ data class CartItem (
     val name: String = "",
     val ref: String = "",
     val size: String = "",
-    val count: Int = 0,
+    var count: Int = 0,
     val documentId: String = "",
     val avatarImageUrl: String = ""
 )
