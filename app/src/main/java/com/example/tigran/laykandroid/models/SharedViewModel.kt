@@ -29,43 +29,23 @@ class SharedViewModel : ViewModel() {
 
     fun select(item: CartItem) {
 
-        // Because each object has it's own ID, so we need to compare values
-        // the same way as in IOS using something similar to contains(where:)
+        // Check if there is already the same item in array
+        val isUniqueItem = cartItems.contains(cartItems.find { it.name == item.name && it.size == item.size })
 
-//        val isUniqueItem = cartItems.contains(item)
-//        Log.d(TAG, "Cart Items size is ${cartItems.size}")
-//
-//        if (isUniqueItem) {
-//            Log.d(TAG, "Item is unique")
-////            cartItems.map {
-////                if (it.avatarImageUrl == item.avatarImageUrl && it.size == item.size) {
-////                    it.count += 1
-////                }
-////            }
-////            cartItemLiveData.value = cartItems
-//        } else {
-//            Log.d(TAG, "Item is not unique")
-////            cartItems.add(item)
-////            cartItemLiveData.value = cartItems
-//        }
-
-        if (cartItems.isEmpty()) {
-            cartItems.add(item)
+        // If item is already there, update count + 1 but if not then add new item in the array
+        if (isUniqueItem) {
+            cartItems = ArrayList(cartItems.map {
+                val mutableItem = it
+                if (mutableItem.name == item.name && mutableItem.size == item.size) {
+                    mutableItem.count += 1
+                }
+                mutableItem
+            })
             cartItemLiveData.value = cartItems
         } else {
-            cartItems.map {
-                if (item.avatarImageUrl == it.avatarImageUrl) {
-                    it.count += 1
-                    cartItemLiveData.value = cartItems
-                    Log.d(TAG, "Cart item was changed")
-                } else {
-                    cartItems.add(item)
-                    cartItemLiveData.value = cartItems
-                    Log.d(TAG, "Cart item wasn't changed")
-                }
-            }
+            cartItems.add(item)
+            cartItemLiveData.value = cartItems
         }
     }
-
 
 }
