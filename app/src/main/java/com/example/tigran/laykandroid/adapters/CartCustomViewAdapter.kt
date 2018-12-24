@@ -93,13 +93,14 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
             itemView.itemNameTextView.text = cartItemData.name
             itemView.itemRefTextView.text = "Код товара: ${cartItemData.ref}"
             itemView.itemPriceTextView.text = "${cartItemData.price} грн"
+            itemView.itemCountTextView.text = "${cartItemData.count}"
 
             itemView.plusBtn.setOnClickListener {
                 listOfItems.map { item ->
                     if (item.avatarImageUrl == cartItemData.avatarImageUrl && item.size == cartItemData.size) {
                         item.count += 1
                     }
-                    itemView.countItemTextView.text = item.count.toString()
+                    itemView.itemCountTextView.text = item.count.toString()
                     notifyDataSetChanged()
                 }
             }
@@ -113,7 +114,7 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
                             item.count -= 1
                         }
                     }
-                    itemView.countItemTextView.text = item.count.toString()
+                    itemView.itemCountTextView.text = item.count.toString()
                     notifyDataSetChanged()
                 }
             }
