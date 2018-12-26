@@ -1,10 +1,8 @@
 package com.example.tigran.laykandroid.models
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.services.DataService
 import com.google.firebase.firestore.QuerySnapshot
 
@@ -24,7 +22,7 @@ class SharedViewModel : ViewModel() {
         return testimonialsLiveData
     }
 
-    private var cartItems = ArrayList<CartItem>()
+    var cartItems = ArrayList<CartItem>()
     var cartItemLiveData = MutableLiveData<List<CartItem>>()
 
     fun select(item: CartItem) {
@@ -45,6 +43,15 @@ class SharedViewModel : ViewModel() {
         } else {
             cartItems.add(item)
             cartItemLiveData.value = cartItems
+        }
+    }
+
+    companion object {
+        private lateinit var sInstance: SharedViewModel
+
+        fun get() : SharedViewModel {
+            sInstance = if (::sInstance.isInitialized) sInstance else SharedViewModel()
+            return sInstance
         }
     }
 

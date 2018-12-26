@@ -22,7 +22,7 @@ class CartFragment : Fragment() {
     private lateinit var model: SharedViewModel
 
     private var listOfItems = mutableListOf<CartItem>()
-    private val cartCustomAdapter = CartCustomViewAdapter()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_cart, container, false)
@@ -33,7 +33,8 @@ class CartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initView()
+        val cartCustomAdapter = CartCustomViewAdapter()
+        initView(cartCustomAdapter)
         // Set observer for the live data. as soon as data changed, we set the data to setItemList which calls
         // notifier to update recyclerView with the newest data
         model = activity?.run {
@@ -43,12 +44,13 @@ class CartFragment : Fragment() {
             listOfItems = item.toMutableList()
             if (context != null) {
                 cartCustomAdapter.setItemList(listOfItems)
+                cartCustomAdapter.model = model
             }
         })
 
     }
 
-    private fun initView() {
+    private fun initView(cartCustomAdapter: CartCustomViewAdapter) {
         recyclerCartView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         recyclerCartView.adapter = cartCustomAdapter
         // Add divider

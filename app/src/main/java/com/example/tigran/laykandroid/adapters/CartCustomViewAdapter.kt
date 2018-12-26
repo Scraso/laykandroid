@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.CartItem
+import com.example.tigran.laykandroid.models.SharedViewModel
 import kotlinx.android.synthetic.main.cart_item_amount_view.view.*
 import kotlinx.android.synthetic.main.cart_item_view.view.*
 
@@ -21,6 +22,7 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
     private var listOfItems = listOf<CartItem>()
     lateinit var context: Context
+    var model: SharedViewModel? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -85,6 +87,17 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
         notifyDataSetChanged()
     }
 
+    private fun removeItem(position: Int) {
+        listOfItems.drop(position)
+//        notifyItemRemoved(position)
+        model?.cartItems?.drop(position)
+//        model?.cartItemLiveData?.value = listOfItems
+        Log.d(TAG, "LiveData is $position")
+//        model?.cartItemLiveData?.value = listOfItems
+//        notifyItemRangeChanged(position, listOfItems.size)
+        notifyDataSetChanged()
+    }
+
 
     inner class CartItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -119,6 +132,11 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
                 }
             }
 
+            itemView.deleteItemBtn.setOnClickListener {
+                Log.d(TAG, "Hello World")
+                removeItem(adapterPosition)
+            }
+
 
 
             Glide
@@ -127,8 +145,6 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
                     .fitCenter()}
                 .load(cartItemData.avatarImageUrl)
                 .into(itemView.itemImageView)
-            
-            Log.d(TAG, "ITEM COUNT IS ${cartItemData.count}")
 
         }
 

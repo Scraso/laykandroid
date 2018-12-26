@@ -67,7 +67,7 @@
     <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:id="@+id/button" android:layout_marginEnd="20dp" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/deleteItemBtn" android:layout_marginEnd="20dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@+id/itemNameTextView"
             android:background="@drawable/ic_cancel_gray_24dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
