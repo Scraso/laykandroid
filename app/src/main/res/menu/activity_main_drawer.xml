@@ -3,7 +3,7 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:id="@+id/main">
         <item
                 android:id="@+id/nav_home"
                 android:icon="@drawable/ic_menu_home"
@@ -22,6 +22,10 @@
                 android:title="Корзина"/>
         <item android:title="Информация" android:id="@+id/nav_information"
               android:icon="@drawable/ic_menu_information"/>
+    </group>
+    <group
+            android:id="@+id/secondary">
+        <item android:title="Войти в магазин" android:icon="@drawable/ic_menu_user" android:id="@+id/nav_user"/>
     </group>
 
 </menu>

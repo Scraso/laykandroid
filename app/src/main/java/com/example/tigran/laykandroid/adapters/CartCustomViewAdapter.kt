@@ -2,7 +2,6 @@ package com.example.tigran.laykandroid.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
 import kotlinx.android.synthetic.main.cart_item_amount_view.view.*
@@ -20,7 +18,7 @@ import kotlinx.android.synthetic.main.cart_item_view.view.*
 
 class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
-    private var listOfItems = listOf<CartItem>()
+    private var listOfItems = mutableListOf<CartItem>()
     lateinit var context: Context
     var model: SharedViewModel? = null
 
@@ -83,19 +81,15 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     }
 
     fun setItemList(listOfItems: List<CartItem>) {
-        this.listOfItems = listOfItems
+        this.listOfItems = listOfItems.toMutableList()
         notifyDataSetChanged()
     }
 
     private fun removeItem(position: Int) {
-        listOfItems.drop(position)
-//        notifyItemRemoved(position)
-        model?.cartItems?.drop(position)
-//        model?.cartItemLiveData?.value = listOfItems
-        Log.d(TAG, "LiveData is $position")
-//        model?.cartItemLiveData?.value = listOfItems
-//        notifyItemRangeChanged(position, listOfItems.size)
-        notifyDataSetChanged()
+        // Remove from the ShareViewModel array and update LiveData/
+        // Once LiveData will be updated, observer will trigger and update listOfItems array size.
+        model?.cartItems?.removeAt(position)
+        model?.cartItemLiveData?.value = model?.cartItems
     }
 
 
@@ -133,11 +127,8 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
             }
 
             itemView.deleteItemBtn.setOnClickListener {
-                Log.d(TAG, "Hello World")
                 removeItem(adapterPosition)
             }
-
-
 
             Glide
                 .with(context)

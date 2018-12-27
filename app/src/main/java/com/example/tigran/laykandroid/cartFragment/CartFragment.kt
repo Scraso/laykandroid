@@ -9,15 +9,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.adapters.CartCustomViewAdapter
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : Fragment() {
-
-    private val LOG_TAG = "CartFragment"
 
     private lateinit var model: SharedViewModel
 

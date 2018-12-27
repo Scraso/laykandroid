@@ -29,7 +29,8 @@
         <argument android:name="category" app:argType="string" android:defaultValue='""'/>
     </fragment>
     <fragment android:id="@+id/nav_home" android:name="com.example.tigran.laykandroid.homeFragment.MenuFragment"
-              tools:layout="@layout/fragment_menu"/>
+              tools:layout="@layout/fragment_menu">
+    </fragment>
     <fragment android:id="@+id/nav_cart" android:name="com.example.tigran.laykandroid.cartFragment.CartFragment"
               tools:layout="@layout/fragment_cart"/>
     <fragment android:id="@+id/nav_history"
@@ -42,4 +43,6 @@
               android:name="com.example.tigran.laykandroid.shopFragment.ItemDetailsFragment"
               tools:layout="@layout/fragment_item_details">
     </fragment>
+    <activity android:id="@+id/nav_user" android:name="com.example.tigran.laykandroid.LoginActivity"
+              android:label="LoginActivity"/>
 </navigation>
