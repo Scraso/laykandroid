@@ -43,6 +43,6 @@
               android:name="com.example.tigran.laykandroid.shopFragment.ItemDetailsFragment"
               tools:layout="@layout/fragment_item_details">
     </fragment>
-    <activity android:id="@+id/nav_user" android:name="com.example.tigran.laykandroid.LoginActivity"
-              android:label="LoginActivity"/>
+    <activity android:id="@+id/nav_login" android:name="com.example.tigran.laykandroid.LoginActivity"
+    />
 </navigation>

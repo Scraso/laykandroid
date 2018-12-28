@@ -46,13 +46,13 @@ class SharedViewModel : ViewModel() {
         }
     }
 
-    companion object {
-        private lateinit var sInstance: SharedViewModel
-
-        fun get() : SharedViewModel {
-            sInstance = if (::sInstance.isInitialized) sInstance else SharedViewModel()
-            return sInstance
-        }
-    }
+//    companion object {
+//        private lateinit var sInstance: SharedViewModel
+//
+//        fun get() : SharedViewModel {
+//            sInstance = if (::sInstance.isInitialized) sInstance else SharedViewModel()
+//            return sInstance
+//        }
+//    }
 
 }

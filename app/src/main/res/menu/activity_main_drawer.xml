@@ -25,7 +25,9 @@
     </group>
     <group
             android:id="@+id/secondary">
-        <item android:title="Войти в магазин" android:icon="@drawable/ic_menu_user" android:id="@+id/nav_user"/>
+        <item android:title="Войти в магазин" android:icon="@drawable/ic_menu_user" android:id="@+id/nav_login"
+        />
+        <item android:title="Выйти из магазина" android:id="@+id/nav_logout" android:icon="@drawable/ic_menu_logout"/>
     </group>
 
 </menu>

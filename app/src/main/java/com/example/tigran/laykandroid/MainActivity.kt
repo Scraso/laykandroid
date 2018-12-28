@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -15,12 +16,12 @@ import androidx.navigation.ui.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.home_news_item.view.*
-import kotlinx.android.synthetic.main.nav_header_main.*
+import java.util.*
+import kotlin.concurrent.schedule
 
 const val TAG = "TIGRAN"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var appBarConfiguration : AppBarConfiguration
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         // Define top-level destination
         val drawerLayout : DrawerLayout? = findViewById(R.id.drawer_layout)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_shop, R.id.nav_cart, R.id.nav_history, R.id.nav_information, R.id.nav_user),
+            setOf(R.id.nav_home, R.id.nav_shop, R.id.nav_cart, R.id.nav_history, R.id.nav_information, R.id.nav_login),
             drawerLayout)
 
         setupActionBar(navController, appBarConfiguration)
@@ -51,14 +52,16 @@ class MainActivity : AppCompatActivity() {
         // Set Title of the View
         toolbar.title = "Меню"
 
-    }
+        checkUserActivity()
 
+    }
 
 
     // Display navigation view
     private fun setupNavigationMenu(navController: NavController) {
         val sideNavView = findViewById<NavigationView>(R.id.nav_view)
         sideNavView?.setupWithNavController(navController)
+
     }
 
     private fun setupActionBar(navController: NavController,
@@ -69,7 +72,6 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration)
     }
-
 
     override fun onBackPressed() {
         when {
@@ -82,38 +84,89 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-        // Check if user is logged in and based on status update the item status
         return true
     }
+//    private fun recommendationsData(name: (String) -> Unit) {}
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-//        return item.onNavDestinationSelected(findNavController(R.id.nav_host_fragment))
-//                || super.onOptionsItemSelected(item)
+        val drawerLayout : DrawerLayout? = findViewById(R.id.drawer_layout)
         return when (item.itemId) {
             R.id.action_cart -> {
+                drawerLayout?.openDrawer(GravityCompat.START)
                 findNavController(R.id.nav_host_fragment).navigate(R.id.nav_cart)
+                Timer().schedule(600) {
+                    drawerLayout?.closeDrawer(GravityCompat.START)
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.nav_home) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home)
+        }
+        if (id == R.id.nav_shop) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_shop)
+
+        }
+        if (id == R.id.nav_history) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_history)
+
+        }
+        if (id == R.id.nav_cart) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_cart)
+
+        }
+        if (id == R.id.nav_information) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_information)
+        }
+        if (id == R.id.nav_login) {
+            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_login)
+        }
+        if (id == R.id.nav_logout) {
+            auth.signOut()
+        }
+        drawer_layout.closeDrawers()
+        return true
+    }
+
+
+
     private fun checkUserActivity() {
-        val menuUserStatus = findViewById<NavigationView>(R.id.nav_user)
+        // Get Navigation header TextView
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        // Set Navigation View on Click Listener so we can check what is the status of the user
+        // and handle sign out in onNavigationItemSelected method.
+        navigationView?.setNavigationItemSelectedListener(this)
+
+        val headerView = navigationView.getHeaderView(0)
+        val navUserEmail = headerView.findViewById<TextView>(R.id.header_userTextView)
+
+        // Get Navigation User Status menu item
+        val menu = navigationView.menu
+        val navUserLogin = menu.findItem(R.id.nav_login)
+        val navUserLogout = menu.findItem(R.id.nav_logout)
+
+
         auth.addAuthStateListener { auth  ->
             val user = auth.currentUser
             if (user != null) {
                 Log.d(TAG, "User is not null")
-                header_userTextView.text = user.email
-                menuUserStatus.titleTextVew.text = "Выйти из магазина"
+                navUserEmail.text = user.email
+                navUserLogin.isVisible = false
+                navUserLogout.isVisible = true
             } else {
                 Log.d(TAG, "User is null")
-                header_userTextView.text = "Войдите или зарегистрируйтесь"
-                menuUserStatus.titleTextVew.text = "Войти в магазин"
+                navUserEmail.text = "Войдите или зарегистрируйтесь"
+                navUserLogin.isVisible = true
+                navUserLogout.isVisible = false
             }
         }
     }

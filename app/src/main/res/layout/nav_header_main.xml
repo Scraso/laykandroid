@@ -25,6 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/header_userTextView" android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:text="Войдите или зарегистрируйтесь" android:textStyle="bold"/>
+            android:text="Войдите или зарегистрируйтесь" android:textSize="15sp"/>
 
 </LinearLayout>
