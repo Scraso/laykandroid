@@ -14,14 +14,12 @@ class FirebaseQueryLiveData (private var query: Query) : LiveData<QuerySnapshot>
 
     override fun onActive() {
         super.onActive()
-        Log.d(LOG_TAG, "onActive")
         listenerRegistration = query.addSnapshotListener(listener)
 
     }
 
     override fun onInactive() {
         super.onInactive()
-        Log.d(LOG_TAG, "onInactive: ")
         listenerRegistration.remove()
 
     }

@@ -2,7 +2,6 @@ package com.example.tigran.laykandroid.homeFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.adapters.NewsCustomViewAdapter
 import com.example.tigran.laykandroid.adapters.TestimonialsCustomAdapter
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.News
 import com.example.tigran.laykandroid.models.SharedViewModel
 import com.example.tigran.laykandroid.models.Testimonials
@@ -56,7 +54,6 @@ class MenuFragment: Fragment() {
             newsList.clear()
 
             snapshot?.documents?.forEach { doc ->
-                Log.d(TAG, "DOCUMENTS DATA IS ${doc.data}")
                 if (doc != null && doc.exists()) {
                     val news = doc.toObject(News::class.java)
                     if (news != null) newsList += news
@@ -71,7 +68,6 @@ class MenuFragment: Fragment() {
             testimonials.clear()
 
             snapshot?.documents?.forEach { doc ->
-                Log.d(TAG, "DOCUMENTS DATA IS ${doc.data}")
                 if (doc != null && doc.exists()) {
                     val testimonial = doc.toObject(Testimonials::class.java)
                     if (testimonial != null) testimonials += testimonial

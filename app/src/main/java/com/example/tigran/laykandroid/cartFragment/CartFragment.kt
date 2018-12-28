@@ -1,10 +1,8 @@
 package com.example.tigran.laykandroid.cartFragment
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.R
@@ -23,8 +21,9 @@ class CartFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_cart, container, false)
         activity?.title = "Корзина"
-
-
+        // Call this option to re-draw Option Menu
+        // Once it's called, onCreateOptionMenu will be called with the new parameters
+        setHasOptionsMenu(true)
         return rootView
     }
 
@@ -55,6 +54,11 @@ class CartFragment : Fragment() {
         )
         recyclerCartView.addItemDecoration(decoration)
         if (context != null) cartCustomAdapter.context = context!!
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val cartItem = menu.findItem(R.id.action_cart)
+        cartItem.isVisible = false
     }
 
 }

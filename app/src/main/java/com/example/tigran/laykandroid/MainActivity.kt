@@ -84,9 +84,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
         return true
     }
-//    private fun recommendationsData(name: (String) -> Unit) {}
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.action_cart -> {
                 drawerLayout?.openDrawer(GravityCompat.START)
                 findNavController(R.id.nav_host_fragment).navigate(R.id.nav_cart)
-                Timer().schedule(600) {
+                Timer().schedule(500) {
                     drawerLayout?.closeDrawer(GravityCompat.START)
                 }
                 true
@@ -110,22 +110,39 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val id = item.itemId
 
         if (id == R.id.nav_home) {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home)
+            if (item.isChecked) {
+                Log.d(TAG, "Currently in this state")
+            } else {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home)
+            }
         }
         if (id == R.id.nav_shop) {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_shop)
-
+            if (item.isChecked) {
+                Log.d(TAG, "Currently in this state")
+            } else {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_shop)
+            }
         }
         if (id == R.id.nav_history) {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_history)
-
+            if (item.isChecked) {
+                Log.d(TAG, "Currently in this state")
+            } else {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_history)
+            }
         }
         if (id == R.id.nav_cart) {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_cart)
-
+            if (item.isChecked) {
+                Log.d(TAG, "Currently in this state")
+            } else {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_cart)
+            }
         }
         if (id == R.id.nav_information) {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.nav_information)
+            if (item.isChecked) {
+                Log.d(TAG, "Currently in this state")
+            } else {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_information)
+            }
         }
         if (id == R.id.nav_login) {
             findNavController(R.id.nav_host_fragment).navigate(R.id.nav_login)
