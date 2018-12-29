@@ -14,6 +14,7 @@ class SharedViewModel : ViewModel() {
     private val newsLiveData = FirebaseQueryLiveData(newsQuery)
     private val testimonialsLiveData = FirebaseQueryLiveData(testimonials)
 
+
     fun getNewsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
         return newsLiveData
     }

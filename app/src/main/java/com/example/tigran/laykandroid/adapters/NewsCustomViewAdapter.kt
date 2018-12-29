@@ -10,14 +10,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.models.News
-import kotlinx.android.synthetic.main.home_news_item.view.*
+import kotlinx.android.synthetic.main.news_home_item.view.*
 
 
 class NewsCustomViewAdapter(private val news: ArrayList<News>, private val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<NewsCustomViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val cellForRow = layoutInflater.inflate(R.layout.home_news_item, parent, false)
+        val cellForRow = layoutInflater.inflate(R.layout.news_home_item, parent, false)
         return NewsCustomViewAdapter.ViewHolder(cellForRow)
     }
 
@@ -40,7 +40,7 @@ class NewsCustomViewAdapter(private val news: ArrayList<News>, private val conte
 
     // The same as UITableViewCell to declare variables and then pass the data
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.imageView
-        val title: TextView = itemView.titleTextVew
+        val imageView: ImageView = itemView.imageView2
+        val title: TextView = itemView.textView2
     }
 }
