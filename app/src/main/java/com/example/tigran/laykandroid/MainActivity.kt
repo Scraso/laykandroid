@@ -16,6 +16,7 @@ import androidx.navigation.ui.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.fragment_menu.*
 import java.util.*
 import kotlin.concurrent.schedule
 

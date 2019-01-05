@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.models.News
 import kotlinx.android.synthetic.main.news_home_item.view.*
@@ -31,8 +30,6 @@ class NewsCustomViewAdapter(private val news: ArrayList<News>, private val conte
 
         Glide
             .with(context)
-            .apply { RequestOptions()
-                .fitCenter()}
             .load(news.avatarImageUrl)
             .into(holder.imageView)
     }

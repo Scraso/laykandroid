@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.home_testimonials_item.view.*
 class TestimonialsCustomAdapter(private val testimonials: ArrayList<Testimonials>, private val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<TestimonialsCustomAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val cellForRow = layoutInflater.inflate(R.layout.home_testimonials_item, parent, false)
+        val cellForRow = layoutInflater.inflate(R.layout.testimonial_home_item, parent, false)
         return TestimonialsCustomAdapter.ViewHolder(cellForRow)
     }
 

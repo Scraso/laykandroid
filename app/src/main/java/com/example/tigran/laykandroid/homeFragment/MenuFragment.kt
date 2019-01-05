@@ -1,19 +1,24 @@
 package com.example.tigran.laykandroid.homeFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.tigran.laykandroid.adapters.NewsCustomViewAdapter
 import com.example.tigran.laykandroid.adapters.TestimonialsCustomAdapter
 import com.example.tigran.laykandroid.R
+import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.News
 import com.example.tigran.laykandroid.models.SharedViewModel
 import com.example.tigran.laykandroid.models.Testimonials
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.android.synthetic.main.fragment_menu.*
 
 class MenuFragment: Fragment() {
 
@@ -79,6 +84,13 @@ class MenuFragment: Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        playBtn.setOnClickListener {
+            Log.d(TAG,"Play button pressed")
+            it.findNavController().navigate(R.id.nav_videoView)
+        }
+    }
 
 }
 
