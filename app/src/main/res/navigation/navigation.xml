@@ -45,7 +45,7 @@
     </fragment>
     <activity android:id="@+id/nav_login" android:name="com.example.tigran.laykandroid.LoginActivity"
     />
-    <fragment android:id="@+id/nav_videoView"
-              android:name="com.example.tigran.laykandroid.homeFragment.VideoViewFragment"
+    <activity android:id="@+id/nav_videoView"
+              android:name="com.example.tigran.laykandroid.homeFragment.VideoPlayerActivity"
     />
 </navigation>

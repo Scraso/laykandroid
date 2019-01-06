@@ -2,20 +2,17 @@ package com.example.tigran.laykandroid.homeFragment
 
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tigran.laykandroid.R
 import kotlinx.android.synthetic.main.viewplayer_home.*
 
-class VideoViewFragment: Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.viewplayer_home, container, false)
+class VideoPlayerActivity: AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.viewplayer_home)
 
         initializePlayer()
-
-        return view
     }
 
     private fun getMedia() : Uri {

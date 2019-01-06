@@ -161,15 +161,22 @@ class ItemDetailsFragment : Fragment(), View.OnTouchListener {
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         for (button in buttons) {
             if (button.id == v?.id) {
-                if (event?.action == MotionEvent.ACTION_DOWN) {
-                    button.isPressed = true
-                    button.setTextColor(Color.WHITE)
-                } else {
-                    if (button.isEnabled) {
-                        button.isPressed = false
-                        Log.d(TAG, "Button background is ${button.id}")
-                        button.setTextColor(Color.parseColor("#007aff"))
-                    }
+                button.isPressed = true
+                button.setTextColor(Color.WHITE)
+//                if (event?.action == MotionEvent.ACTION_DOWN) {
+//                    button.isPressed = true
+//                    button.setTextColor(Color.WHITE)
+//                } else {
+//                    if (button.isEnabled) {
+//                        button.isPressed = false
+//                        Log.d(TAG, "Button background is ${button.id}")
+//                        button.setTextColor(Color.parseColor("#007aff"))
+//                    }
+//                }
+            } else {
+                button.isPressed = false
+                if (button.isEnabled) {
+                    button.setTextColor(Color.parseColor("#007aff"))
                 }
             }
         }

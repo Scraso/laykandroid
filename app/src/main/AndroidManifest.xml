@@ -30,6 +30,10 @@
                 android:name=".LoginActivity"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
         </activity>
+        <activity
+                android:name=".homeFragment.VideoPlayerActivity"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+        </activity>
     </application>
 
 </manifest>

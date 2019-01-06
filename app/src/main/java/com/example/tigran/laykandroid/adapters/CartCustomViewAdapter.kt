@@ -97,7 +97,7 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
         @SuppressLint("SetTextI18n")
         fun configureView(cartItemData: CartItem) {
-            itemView.itemNameTextView.text = cartItemData.name
+            itemView.itemNameTextView.text = "${cartItemData.name} ${cartItemData.size}"
             itemView.itemRefTextView.text = "Код товара: ${cartItemData.ref}"
             itemView.itemPriceTextView.text = "${cartItemData.price} грн"
             itemView.itemCountTextView.text = "${cartItemData.count}"
