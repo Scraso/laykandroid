@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,6 +14,7 @@ import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
 import kotlinx.android.synthetic.main.cart_item_amount_view.view.*
+import kotlinx.android.synthetic.main.cart_item_empty_view.view.*
 import kotlinx.android.synthetic.main.cart_item_view.view.*
 
 
@@ -31,19 +34,16 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
                     parent,
                     false
                 )
-            )
-            else -> CartItemViewHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.cart_item_amount_view,
-                    parent,
-                    false
-                )
-            )
+            ) else -> EmptyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cart_item_empty_view, parent, false))
         }
     }
 
     override fun getItemCount(): Int {
-        return listOfItems.size + 1
+        return if (listOfItems.isEmpty()) {
+            1
+        } else {
+            listOfItems.size + 1
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -65,11 +65,14 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
      */
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            listOfItems.size -> CellType.TOTAL.ordinal
-            else -> CellType.ITEM.ordinal
+        return if (listOfItems.isEmpty()) {
+            CellType.EMPTY.ordinal
+        } else {
+            when (position) {
+                listOfItems.size -> CellType.TOTAL.ordinal
+                else -> CellType.ITEM.ordinal
+            }
         }
-
     }
 
     /***
@@ -77,7 +80,8 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
      */
     enum class CellType {
         ITEM,
-        TOTAL
+        TOTAL,
+        EMPTY
     }
 
     fun setItemList(listOfItems: List<CartItem>) {
@@ -152,5 +156,7 @@ class CartCustomViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
             itemView.totalAmountTextView.text = "$cost грн"
         }
     }
+
+    inner class EmptyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

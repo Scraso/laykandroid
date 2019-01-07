@@ -1,11 +1,15 @@
 package com.example.tigran.laykandroid.cartFragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.example.tigran.laykandroid.R
+import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.adapters.CartCustomViewAdapter
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
@@ -27,6 +31,7 @@ class CartFragment : Fragment() {
         return rootView
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val cartCustomAdapter = CartCustomViewAdapter()
         initView(cartCustomAdapter)
@@ -40,8 +45,17 @@ class CartFragment : Fragment() {
             if (context != null) {
                 cartCustomAdapter.setItemList(listOfItems)
                 cartCustomAdapter.model = model
+                if (listOfItems.isEmpty()) {
+                    shippingBtn.visibility = View.INVISIBLE
+                } else {
+                    shippingBtn.visibility = View.VISIBLE
+                }
             }
         })
+
+        shippingBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.nav_delivery)
+        }
     }
 
     private fun initView(cartCustomAdapter: CartCustomViewAdapter) {

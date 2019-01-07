@@ -32,7 +32,13 @@
               tools:layout="@layout/fragment_menu">
     </fragment>
     <fragment android:id="@+id/nav_cart" android:name="com.example.tigran.laykandroid.cartFragment.CartFragment"
-              tools:layout="@layout/fragment_cart"/>
+              tools:layout="@layout/fragment_cart">
+        <action android:id="@+id/action_nav_cart_to_nav_delivery" app:destination="@id/nav_delivery"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment android:id="@+id/nav_history"
               android:name="com.example.tigran.laykandroid.historyFragment.HistoryFragment"
               tools:layout="@layout/fragment_history"/>
@@ -47,5 +53,8 @@
     />
     <activity android:id="@+id/nav_videoView"
               android:name="com.example.tigran.laykandroid.homeFragment.VideoPlayerActivity"
+    />
+    <fragment android:id="@+id/nav_delivery"
+              android:name="com.example.tigran.laykandroid.cartFragment.DeliveryFragment"
     />
 </navigation>
