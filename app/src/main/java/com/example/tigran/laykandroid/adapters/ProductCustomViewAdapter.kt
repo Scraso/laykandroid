@@ -5,9 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +14,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.Product
-import com.example.tigran.laykandroid.shopFragment.ItemDetailsFragment
-import com.example.tigran.laykandroid.shopFragment.ProductListFragmentDirections
 import kotlinx.android.synthetic.main.product_list_item.view.*
 
 

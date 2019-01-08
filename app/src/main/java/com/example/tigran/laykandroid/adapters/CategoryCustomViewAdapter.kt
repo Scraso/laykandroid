@@ -1,30 +1,23 @@
 package com.example.tigran.laykandroid.adapters
 
-import androidx.fragment.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.navOptions
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.models.Category
-import com.example.tigran.laykandroid.shopFragment.ProductListFragmentArgs
 import com.example.tigran.laykandroid.shopFragment.ShopFragmentDirections
 import kotlinx.android.synthetic.main.category_list_item.view.*
 
 
-class CategoryCustomViewAdapter(private val categoryList: ArrayList<Category>, private val fragmentActivity: FragmentActivity?) :
+class CategoryCustomViewAdapter(private val categoryList: ArrayList<Category>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<CategoryCustomViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.category_list_item, parent, false)
         val holder = ViewHolder(cellForRow)
-
-
 
         // Get the clicked holder
         holder.itemView.setOnClickListener {

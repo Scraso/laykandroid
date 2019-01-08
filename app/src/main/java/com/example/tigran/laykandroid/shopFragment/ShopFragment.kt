@@ -18,24 +18,24 @@ import com.example.tigran.laykandroid.services.DataService
 
 class ShopFragment : Fragment() {
 
-    var recyclerview: androidx.recyclerview.widget.RecyclerView? = null
+    var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private val categories = ArrayList<Category>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shop, container, false)
         activity?.title = "Магазин"
         fetchShopCategory()
-        recyclerview = view.findViewById(R.id.categoryListView)
-        recyclerview?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
-        recyclerview?.adapter =
-                CategoryCustomViewAdapter(categories, this.activity)
+        recyclerView = view.findViewById(R.id.categoryListView)
+        recyclerView?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        recyclerView?.adapter =
+                CategoryCustomViewAdapter(categories)
 
         // Add divider
         val decoration = androidx.recyclerview.widget.DividerItemDecoration(
             context,
             androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
         )
-        recyclerview?.addItemDecoration(decoration)
+        recyclerView?.addItemDecoration(decoration)
 
         return view
 
@@ -57,7 +57,7 @@ class ShopFragment : Fragment() {
                 }
             }
             // Reload RecyclerView
-            recyclerview?.adapter?.notifyDataSetChanged()
+            recyclerView?.adapter?.notifyDataSetChanged()
 
         }
     }

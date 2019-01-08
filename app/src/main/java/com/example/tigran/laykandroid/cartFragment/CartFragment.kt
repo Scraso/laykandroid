@@ -2,14 +2,12 @@ package com.example.tigran.laykandroid.cartFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.adapters.CartCustomViewAdapter
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
@@ -20,7 +18,6 @@ class CartFragment : Fragment() {
     private lateinit var model: SharedViewModel
 
     private var listOfItems = mutableListOf<CartItem>()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_cart, container, false)
@@ -54,7 +51,10 @@ class CartFragment : Fragment() {
         })
 
         shippingBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.nav_delivery)
+            val arguments = Bundle()
+            val convertedArray = listOfItems.toTypedArray()
+            arguments.putSerializable("cartItemsArrayList", convertedArray)
+            it.findNavController().navigate(R.id.nav_delivery, arguments)
         }
     }
 

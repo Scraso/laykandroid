@@ -3,7 +3,6 @@ package com.example.tigran.laykandroid.shopFragment
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
@@ -14,13 +13,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.adapters.ImagePageAdapter
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
 import com.example.tigran.laykandroid.models.Product
 import kotlinx.android.synthetic.main.fragment_item_details.*
-import java.nio.channels.Selector
 
 class ItemDetailsFragment : Fragment(), View.OnTouchListener {
 

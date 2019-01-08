@@ -5,8 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -14,7 +12,6 @@ import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
 import kotlinx.android.synthetic.main.cart_item_amount_view.view.*
-import kotlinx.android.synthetic.main.cart_item_empty_view.view.*
 import kotlinx.android.synthetic.main.cart_item_view.view.*
 
 
