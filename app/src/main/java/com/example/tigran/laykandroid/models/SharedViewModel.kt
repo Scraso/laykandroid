@@ -1,8 +1,10 @@
 package com.example.tigran.laykandroid.models
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.services.DataService
 import com.google.firebase.firestore.QuerySnapshot
 
@@ -14,6 +16,8 @@ class SharedViewModel : ViewModel() {
     private val newsLiveData = FirebaseQueryLiveData(newsQuery)
     private val testimonialsLiveData = FirebaseQueryLiveData(testimonials)
 
+    val deliveryDetails = MutableLiveData<DeliveryDetails>()
+
 
     fun getNewsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
         return newsLiveData
@@ -21,6 +25,11 @@ class SharedViewModel : ViewModel() {
 
     fun getTestimonialsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
         return testimonialsLiveData
+    }
+
+    fun setUserDeliveryInformation(userInformation: DeliveryDetails) {
+        deliveryDetails.value = userInformation
+        Log.d(TAG,"DeliveryUserInformation is ${deliveryDetails.value}")
     }
 
     var cartItems = ArrayList<CartItem>()
