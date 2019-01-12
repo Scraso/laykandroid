@@ -2,29 +2,27 @@ package com.example.tigran.laykandroid.adapters
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
-import com.example.tigran.laykandroid.models.DeliveryDetails
 import com.example.tigran.laykandroid.models.SharedViewModel
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.delivery_details_item.view.*
-import kotlinx.android.synthetic.main.viewplayer_home.view.*
-
-//interface DeliveryDetails {
-////    val deliveryInformation: MutableMap<String, String>
-//    val name: String
-//}
 
 
-class DeliveryCustomViewAdapter(private val userDeliveryHints: ArrayList<String>, private val userDeliveryDetails: ArrayList<DeliveryDetails>): androidx.recyclerview.widget.RecyclerView.Adapter<DeliveryCustomViewAdapter.ViewHolder>() {
 
-//    private var model: SharedViewModel? = null
-//    private var userDeliveryDetails: DeliveryDetails? = null
+class DeliveryCustomViewAdapter(private val model: SharedViewModel, private val deliveryViewModel: MutableMap<String, String>): androidx.recyclerview.widget.RecyclerView.Adapter<DeliveryCustomViewAdapter.ViewHolder>() {
 
+    // Extension for edit Text setText
+    var EditText.value
+        get() = this.text.toString()
+        set(value) {
+            this.setText(value)
+        }
+
+    private val deliveryMutableMap = mutableMapOf<String, String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -33,62 +31,64 @@ class DeliveryCustomViewAdapter(private val userDeliveryHints: ArrayList<String>
     }
 
     override fun getItemCount(): Int {
-        return userDeliveryHints.size
+        return 1
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val hintDetails = userDeliveryHints[position]
-        val deliveryDetails = userDeliveryDetails[position]
-        holder.inputText.hint = hintDetails
-        holder.inputText.addTextChangedListener(object : TextWatcher {
 
-//            private var userInformationDetails = HashMap<String, String>()
+        if (deliveryViewModel["name"] != null) {
+            holder.nameInputText.value = deliveryViewModel["name"].toString()
+        }
+        if (deliveryViewModel["phone"] != null) {
+            holder.phoneInputText.value = deliveryViewModel["phone"].toString()
+        }
+        if (deliveryViewModel["city"] != null) {
+            holder.cityInputText.value = deliveryViewModel["city"].toString()
+        }
+        if (deliveryViewModel["address"] != null) {
+            holder.addressInputText.value = deliveryViewModel["address"].toString()
+        }
+        if (deliveryViewModel["comment"] != null) {
+            holder.commentInputText.value = deliveryViewModel["comment"].toString()
+        }
 
-            override fun afterTextChanged(s: Editable?) {}
 
+        holder.nameInputText.onChange {
+            deliveryMutableMap["name"] = it
+            model.setUserDeliveryInformation(deliveryMutableMap)
+        }
+        holder.phoneInputText.onChange {
+            deliveryMutableMap["phone"] = it
+            model.setUserDeliveryInformation(deliveryMutableMap)
+        }
+        holder.cityInputText.onChange {
+            deliveryMutableMap["city"] = it
+            model.setUserDeliveryInformation(deliveryMutableMap)
+        }
+        holder.addressInputText.onChange {
+            deliveryMutableMap["address"] = it
+            model.setUserDeliveryInformation(deliveryMutableMap)
+        }
+        holder.commentInputText.onChange {
+            deliveryMutableMap["comment"] = it
+            model.setUserDeliveryInformation(deliveryMutableMap)
+        }
+    }
+
+    private fun EditText.onChange(cb: (String) -> Unit) {
+        this.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) { cb(s.toString()) }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                holder.inputText.textView.text = deliveryDetails.deliveryType
-//                deliveryInformation?.put("testname", "Tigran")
-//                deliveryInformation?.put("testLastname", "Ambarcumyan")
-                when (position) {
-//                    0 -> userInformationDetails["name"] = s.toString()
-//                    1 -> userInformationDetails["phone"] = s.toString()
-//                    2 -> userInformationDetails["city"] = s.toString()
-//                    3 -> userInformationDetails["address"] = s.toString()
-//                    4 -> userInformationDetails["comment"] = s.toString()
-//                    0 -> deliveryInformation?.put("name", s.toString())
-//                    1 -> deliveryInformation?.put("phone", s.toString())
-//                    2 -> deliveryInformation?.put("city", s.toString())
-//                    3 -> deliveryInformation?.put("address", s.toString())
-//                    4 -> deliveryInformation?.put("comment", s.toString())
-                }
-//                userDeliveryDetails = DeliveryDetails(userInformationDetails)
-//                model?.setUserDeliveryInformation(userDeliveryDetails!!)
-
-//                Log.d(TAG, "Name is $name")
-//                Log.d(TAG, "Delivery phone is ${deliveryInformation?.get("phone")}")
-//                Log.d(TAG, "Delivery city is ${deliveryInformation?.get("city")}")
-//                Log.d(TAG, "Delivery address is ${deliveryInformation?.get("address")}")
-//                Log.d(TAG, "Delivery comment is ${deliveryInformation?.get("comment")}")
-//
-//                Log.d(TAG, "Delivery testname is ${deliveryInformation?.get("testname")}")
-//                Log.d(TAG, "Delivery testLastname is ${deliveryInformation?.get("testLastname")}")
             }
         })
-
-
-//        when (position) {
-//            0 -> holder.inputText.hint = "Ф.И.О"
-//            1 -> holder.inputText.hint = "Номер телефона"
-//            2 -> holder.inputText.hint = "Город"
-//            3 -> holder.inputText.hint = "Отделение Новой Почты"
-//            4 -> holder.inputText.hint = "Комментарий к заказу"
-//        }
     }
 
     class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-        val inputText: TextInputEditText = itemView.deliveryInputText
+        val nameInputText: TextInputEditText = itemView.nameInputText
+        val phoneInputText: TextInputEditText = itemView.phoneInputText
+        val cityInputText: TextInputEditText = itemView.cityInputText
+        val addressInputText: TextInputEditText = itemView.addressInputText
+        val commentInputText: TextInputEditText = itemView.commentInputText
     }
 }

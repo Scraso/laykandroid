@@ -11,29 +11,21 @@ import com.example.tigran.laykandroid.adapters.DeliveryCustomViewAdapter
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.models.SharedViewModel
 import androidx.lifecycle.ViewModelProviders
-import com.example.tigran.laykandroid.models.DeliveryDetails
 import java.lang.Exception
 
 class DeliveryFragment: Fragment() {
 
-    var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
-
-    private val userDeliveryHints: ArrayList<String> = ArrayList()
-
-    private val userDeliveryDetails = ArrayList<DeliveryDetails>()
-
+    private var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private lateinit var model: SharedViewModel
 
     // Items from the cart
     private var cartItems = mutableListOf<CartItem>()
+    private var userDetailsViewModel = mutableMapOf<String, String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.delivery_details_view, container, false)
         activity?.title = "Доставка"
-        addDeliveryDetails()
-        recyclerView = view.findViewById(R.id.deliveryDetails_list)
-        recyclerView?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
-        recyclerView?.adapter = DeliveryCustomViewAdapter(userDeliveryHints, userDeliveryDetails )
+
 
         val bundle = this.arguments
         if (bundle != null) {
@@ -49,26 +41,24 @@ class DeliveryFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         model = activity?.run {
             ViewModelProviders.of(this).get(SharedViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
-        model.deliveryDetails.observe(this, Observer { info ->
-            if (context != null) {
-            }
+        model.getUserDeliveryInformation().observe(this, Observer { info ->
+            userDetailsViewModel = info
+            recyclerView?.adapter = DeliveryCustomViewAdapter(model, userDetailsViewModel)
         })
+
+        recyclerView = view.findViewById(R.id.deliveryDetails_list)
+        recyclerView?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        recyclerView?.adapter = DeliveryCustomViewAdapter(model, userDetailsViewModel)
+
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val cartItem = menu.findItem(R.id.action_cart)
         cartItem.isVisible = false
-    }
-
-    private fun addDeliveryDetails() {
-        userDeliveryHints.add("Ф.И.О")
-        userDeliveryHints.add("Номер телефона")
-        userDeliveryHints.add("Город")
-        userDeliveryHints.add("Отделение Новой Почты")
-        userDeliveryHints.add("Комментарий к заказу")
     }
 }

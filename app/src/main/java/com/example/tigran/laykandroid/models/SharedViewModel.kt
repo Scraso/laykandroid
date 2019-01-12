@@ -16,8 +16,7 @@ class SharedViewModel : ViewModel() {
     private val newsLiveData = FirebaseQueryLiveData(newsQuery)
     private val testimonialsLiveData = FirebaseQueryLiveData(testimonials)
 
-    val deliveryDetails = MutableLiveData<DeliveryDetails>()
-
+    private val deliveryDetails = MutableLiveData<MutableMap<String, String>>()
 
     fun getNewsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
         return newsLiveData
@@ -27,9 +26,13 @@ class SharedViewModel : ViewModel() {
         return testimonialsLiveData
     }
 
-    fun setUserDeliveryInformation(userInformation: DeliveryDetails) {
+    fun setUserDeliveryInformation(userInformation: MutableMap<String, String>) {
         deliveryDetails.value = userInformation
         Log.d(TAG,"DeliveryUserInformation is ${deliveryDetails.value}")
+    }
+
+    fun getUserDeliveryInformation(): LiveData<MutableMap<String, String>> {
+        return deliveryDetails
     }
 
     var cartItems = ArrayList<CartItem>()
