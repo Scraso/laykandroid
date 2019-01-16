@@ -103,6 +103,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }
                 true
             }
+            R.id.action_done -> {
+                Log.d(TAG," Done button was pressed")
+             true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
