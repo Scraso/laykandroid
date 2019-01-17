@@ -8,12 +8,20 @@ import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.adapters.DeliveryCustomViewAdapter
 import com.example.tigran.laykandroid.models.CartItem
+import com.example.tigran.laykandroid.services.DataService
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firestore.v1beta1.DocumentTransform
+import java.lang.String.format
+import java.time.LocalDateTime
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class DeliveryFragment: Fragment() {
 
     private var recyclerView: androidx.recyclerview.widget.RecyclerView? = null
     private var menu: Menu? = null
+    private lateinit var auth: FirebaseAuth
 
     // Items from the cart
     private var cartItems = mutableListOf<CartItem>()
@@ -21,7 +29,8 @@ class DeliveryFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.delivery_details_view, container, false)
         activity?.title = "Доставка"
-
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         val bundle = this.arguments
         if (bundle != null) {
@@ -53,7 +62,24 @@ class DeliveryFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_done -> {
-                Log.d(TAG," Done button was pressed")
+
+                val currentUserUid = auth.currentUser?.uid
+                val timestamp = Date().apply { format("dd.MM.yyyy HH:mm") }
+                Log.d(TAG, "Timestamp is $timestamp")
+                val itemCount = cartItems.size
+                val uploadCount = 0
+
+                for (item in cartItems) {
+                    val documentId = DataService.REF_ORDERS.document()
+                    val orderDetails = HashMap<String, Any>()
+                    orderDetails["name"] = item.name
+                    orderDetails["size"] = item.size
+                    orderDetails["price"] = item.price
+                    orderDetails["itemDocumentId"] = item.documentId
+                }
+
+
+
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -21,6 +21,8 @@ object DataService {
 
     private val REF_TESTIMONIALS_ = DB_BASE.collection("testimonials")
 
+    private val REF_ORDERS_ = DB_BASE.collection("orders")
+
 
     val REF_SHOP_CATEGORY: CollectionReference
         get() = REF_SHOP_CATEGORY_
@@ -36,5 +38,8 @@ object DataService {
 
     val REF_TESTIMONIALS: CollectionReference
         get() = REF_TESTIMONIALS_
+
+    val REF_ORDERS: CollectionReference
+        get() = REF_ORDERS_
 
 }
