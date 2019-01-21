@@ -55,7 +55,7 @@ class MenuFragment: Fragment() {
 
         // Get News Data
         newsLiveData.observe(this, Observer<QuerySnapshot> { snapshot ->
-            // Clear array to avoid dublicates
+            // Clear array to avoid duplicates
             newsList.clear()
 
             snapshot?.documents?.forEach { doc ->

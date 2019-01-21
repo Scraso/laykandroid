@@ -22,6 +22,19 @@ class SharedViewModel : ViewModel() {
         return testimonialsLiveData
     }
 
+    fun getProductListDataSnapshotLiveData(): LiveData<QuerySnapshot> {
+        return productListLiveData
+    }
+
+    var category = MutableLiveData<String>()
+
+
+    fun productListLiveData(category:  MutableLiveData<String>): FirebaseQueryLiveData {
+        val productListQuery = DataService.REF_ITEMS.whereEqualTo("category", category.value).whereEqualTo("isAvailable", true)
+        return FirebaseQueryLiveData(productListQuery)
+
+    }
+
     var cartItems = ArrayList<CartItem>()
     var cartItemLiveData = MutableLiveData<List<CartItem>>()
 

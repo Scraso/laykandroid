@@ -10,9 +10,7 @@ import com.example.tigran.laykandroid.adapters.DeliveryCustomViewAdapter
 import com.example.tigran.laykandroid.models.CartItem
 import com.example.tigran.laykandroid.services.DataService
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firestore.v1beta1.DocumentTransform
 import java.lang.String.format
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.HashMap
 

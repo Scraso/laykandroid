@@ -7,12 +7,16 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.models.Category
+import com.example.tigran.laykandroid.models.SharedViewModel
+
 import com.example.tigran.laykandroid.shopFragment.ShopFragmentDirections
 import kotlinx.android.synthetic.main.category_list_item.view.*
 
 
 class CategoryCustomViewAdapter(private val categoryList: ArrayList<Category>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<CategoryCustomViewAdapter.ViewHolder>() {
+
+    private val model = SharedViewModel()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,10 +26,16 @@ class CategoryCustomViewAdapter(private val categoryList: ArrayList<Category>) :
         // Get the clicked holder
         holder.itemView.setOnClickListener {
 
+
+
             // Navigate and pass category name as an argument
             val categoryName = cellForRow.category_type.text.toString()
+            model.category.value = categoryName
+
             val action = ShopFragmentDirections.NextAction().setCategory(categoryName)
             it.findNavController().navigate(action)
+
+
         }
 
         return holder

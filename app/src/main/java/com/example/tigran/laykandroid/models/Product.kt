@@ -7,6 +7,7 @@ data class Product(
     var price: Int = 0,
     var avatarImageUrl: String = "",
     var code: String = "",
+    var documentId: String = "",
     var itemDetails: ArrayList<String> = arrayListOf(),
     var size: Map<String, Int> = emptyMap(),
     var images: ArrayList<String> = arrayListOf()
