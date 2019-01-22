@@ -16,8 +16,6 @@ import kotlinx.android.synthetic.main.category_list_item.view.*
 class CategoryCustomViewAdapter(private val categoryList: ArrayList<Category>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<CategoryCustomViewAdapter.ViewHolder>() {
 
-    private val model = SharedViewModel()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.category_list_item, parent, false)
@@ -30,8 +28,6 @@ class CategoryCustomViewAdapter(private val categoryList: ArrayList<Category>) :
 
             // Navigate and pass category name as an argument
             val categoryName = cellForRow.category_type.text.toString()
-            model.category.value = categoryName
-
             val action = ShopFragmentDirections.NextAction().setCategory(categoryName)
             it.findNavController().navigate(action)
 

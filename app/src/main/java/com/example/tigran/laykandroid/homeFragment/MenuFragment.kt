@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.tigran.laykandroid.adapters.NewsCustomViewAdapter
 import com.example.tigran.laykandroid.adapters.TestimonialsCustomAdapter
 import com.example.tigran.laykandroid.R

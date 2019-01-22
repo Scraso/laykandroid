@@ -11,8 +11,10 @@ class SharedViewModel : ViewModel() {
 
     private val newsQuery = DataService.REF_NEWS_HEADER.whereEqualTo("isPublished", true)
     private val testimonials = DataService.REF_TESTIMONIALS.whereEqualTo("isPublished", true)
+    private val shopCategory =  DataService.REF_SHOP_CATEGORY.whereEqualTo("isEnabled", true)
     private val newsLiveData = FirebaseQueryLiveData(newsQuery)
     private val testimonialsLiveData = FirebaseQueryLiveData(testimonials)
+    private val shopCategoryLiveData = FirebaseQueryLiveData(shopCategory)
 
     fun getNewsDataSnapshotLiveData(): LiveData<QuerySnapshot> {
         return newsLiveData
@@ -22,18 +24,15 @@ class SharedViewModel : ViewModel() {
         return testimonialsLiveData
     }
 
-    fun getProductListDataSnapshotLiveData(): LiveData<QuerySnapshot> {
-        return productListLiveData
+    fun getShopCategorySnapshotLiveData(): LiveData<QuerySnapshot> {
+        return shopCategoryLiveData
     }
 
-    var category = MutableLiveData<String>()
-
-
-    fun productListLiveData(category:  MutableLiveData<String>): FirebaseQueryLiveData {
-        val productListQuery = DataService.REF_ITEMS.whereEqualTo("category", category.value).whereEqualTo("isAvailable", true)
+    fun getProductListDataSnapshotLiveData(category: String): LiveData<QuerySnapshot>? {
+        val productListQuery = DataService.REF_ITEMS.whereEqualTo("category", category).whereEqualTo("isAvailable", true)
         return FirebaseQueryLiveData(productListQuery)
-
     }
+
 
     var cartItems = ArrayList<CartItem>()
     var cartItemLiveData = MutableLiveData<List<CartItem>>()

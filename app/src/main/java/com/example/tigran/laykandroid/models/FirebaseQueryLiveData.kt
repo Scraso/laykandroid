@@ -9,6 +9,7 @@ class FirebaseQueryLiveData (private var query: Query) : LiveData<QuerySnapshot>
     companion object {
         const val LOG_TAG = "FirebaseQueryLiveData"
     }
+
     private val listener = MyValueEventListener()
     private lateinit var listenerRegistration: ListenerRegistration
 
@@ -32,7 +33,6 @@ class FirebaseQueryLiveData (private var query: Query) : LiveData<QuerySnapshot>
            }
             // Set querySnapshot to LiveData
             value = querySnapshot
-
         }
     }
 

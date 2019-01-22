@@ -6,14 +6,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.adapters.CategoryCustomViewAdapter
-import android.util.Log
 import android.view.View
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.navOptions
-import com.example.tigran.laykandroid.TAG
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.models.Category
-import com.example.tigran.laykandroid.services.DataService
+import com.example.tigran.laykandroid.models.SharedViewModel
+import com.google.firebase.firestore.QuerySnapshot
 
 
 class ShopFragment : Fragment() {
@@ -24,7 +22,7 @@ class ShopFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_shop, container, false)
         activity?.title = "Магазин"
-        fetchShopCategory()
+//        fetchShopCategory()
         recyclerView = view.findViewById(R.id.categoryListView)
         recyclerView?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         recyclerView?.adapter =
@@ -37,29 +35,26 @@ class ShopFragment : Fragment() {
         )
         recyclerView?.addItemDecoration(decoration)
 
-        return view
 
-    }
+        val model = ViewModelProviders.of(this).get(SharedViewModel::class.java)
+        val categoryLiveData = model.getShopCategorySnapshotLiveData()
 
-    private fun fetchShopCategory() {
-        DataService.REF_SHOP_CATEGORY.whereEqualTo("isEnabled", true).addSnapshotListener { snapshot, error ->
-            if (error != null) {
-                Log.d(TAG, "Something went wrong, fetching categories failed $error")
-            }
-
-            // Clear array to avoid duplicates when back to this Fragment
+        // Get News Data
+        categoryLiveData.observe(this, Observer<QuerySnapshot> { snapshot ->
+            // Clear array to avoid duplicates
             categories.clear()
 
             snapshot?.documents?.forEach { doc ->
                 if (doc != null && doc.exists()) {
                     val category = doc.toObject(Category::class.java)
                     if (category != null) categories += category
+                    recyclerView?.adapter?.notifyDataSetChanged()
                 }
             }
-            // Reload RecyclerView
-            recyclerView?.adapter?.notifyDataSetChanged()
+        })
 
-        }
+        return view
+
     }
 
 }
