@@ -63,20 +63,34 @@ class DeliveryFragment: Fragment() {
 
                 val currentUserUid = auth.currentUser?.uid
                 val timestamp = Date().apply { format("dd.MM.yyyy HH:mm") }
-                Log.d(TAG, "Timestamp is $timestamp")
                 val itemCount = cartItems.size
                 val uploadCount = 0
 
-                for (item in cartItems) {
+                for (cartItem in cartItems) {
                     val documentId = DataService.REF_ORDERS.document()
                     val orderDetails = HashMap<String, Any>()
-                    orderDetails["name"] = item.name
-                    orderDetails["size"] = item.size
-                    orderDetails["price"] = item.price
-                    orderDetails["itemDocumentId"] = item.documentId
+                    orderDetails["name"] = cartItem.name
+                    orderDetails["size"] = cartItem.size
+                    orderDetails["price"] = cartItem.price
+                    orderDetails["itemDocumentId"] = cartItem.documentId
+                    orderDetails["ref"] = cartItem.ref
+                    orderDetails["count"] = cartItem.count
+                    orderDetails["userId"] = currentUserUid!!
+                    orderDetails["avatarImageUrl"] = cartItem.avatarImageUrl
+                    orderDetails["timestamp"] = timestamp
+                    orderDetails["orderId"] = documentId.id
+                    orderDetails["status"] = "none"
+
+                    val orderStatus = HashMap<String, Any>()
+                    orderStatus["isProcessed"] = false
+                    orderStatus["isDelivered"] = false
+                    orderStatus["isSent"] = false
+                    orderStatus["orderId"] = documentId.id
+                    orderStatus["userId"] = currentUserUid
+
+                    documentId.set(orderDetails)
+
                 }
-
-
 
                 true
             }
