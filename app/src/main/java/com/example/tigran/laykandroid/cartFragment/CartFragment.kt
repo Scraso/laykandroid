@@ -54,7 +54,7 @@ class CartFragment : Fragment() {
             val arguments = Bundle()
             val convertedArray = listOfItems.toTypedArray()
             arguments.putSerializable("cartItemsArrayList", convertedArray)
-            it.findNavController().navigate(R.id.nav_delivery, arguments)
+            it.findNavController().navigate(R.id.nav_delivery_details, arguments)
         }
     }
 

@@ -122,7 +122,7 @@ class ItemDetailsFragment : Fragment(), View.OnTouchListener {
                 "${randomString(3)}${(1..999).shuffled().last()}",
                 selectedBtnSizeTitle!!,
                 1,
-                "",
+                product.documentId,
                 product.avatarImageUrl
             )
             model.select(item)

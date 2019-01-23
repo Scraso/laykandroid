@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" android:gravity="center" android:minWidth="1000dp"
+              android:minHeight="1000dp">
+
+    <TextView
+            android:text="Спасибо. В блажайшее время наши менеджеры обязательно свяжутся с Вами. Статус заказа Вы можете просмотреть во вкладке История."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView6"
+            android:textAlignment="center" android:textSize="17sp" android:paddingLeft="50dp"
+            android:paddingRight="50dp"/>
+    <Button
+            android:text="Закрыть и вернуться обратно"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/doneBtn"
+            android:background="@null" android:textColor="@color/More..." android:textSize="15sp"/>
+</LinearLayout>
