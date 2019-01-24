@@ -6,9 +6,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.EditText
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.models.CartItem
@@ -16,10 +14,14 @@ import com.example.tigran.laykandroid.services.DataService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_delivery_details.*
-import kotlinx.android.synthetic.main.processing_view.*
 import java.util.*
 
-class DeliveryDetailsFragment: Fragment() {
+class DeliveryDetailsFragment: Fragment(), OnClickListenerInterface {
+
+    override fun dismissClicked() {
+        Log.d(TAG, "Button from Dialog fragment was pressed")
+    }
+
 
     private var menu: Menu? = null
     private val editTextArray = ArrayList<EditText>()
@@ -79,6 +81,7 @@ class DeliveryDetailsFragment: Fragment() {
         commentInputText.onChange {
             deliveryMutableMap["comment"] = it
         }
+
     }
 
     private fun EditText.onChange(cb: (String) -> Unit) {

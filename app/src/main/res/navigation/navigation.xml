@@ -65,6 +65,7 @@
     >
         <action android:id="@+id/action_processingFragment_to_nav_cart" app:destination="@id/nav_cart"
                 app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/nav_cart"/>
     </fragment>
 </navigation>
