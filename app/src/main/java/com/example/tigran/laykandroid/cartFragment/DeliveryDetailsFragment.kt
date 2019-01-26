@@ -16,12 +16,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_delivery_details.*
 import java.util.*
 
-class DeliveryDetailsFragment: Fragment(), OnClickListenerInterface {
 
-    override fun dismissClicked() {
-        Log.d(TAG, "Button from Dialog fragment was pressed")
-    }
 
+class DeliveryDetailsFragment: Fragment() {
 
     private var menu: Menu? = null
     private val editTextArray = ArrayList<EditText>()

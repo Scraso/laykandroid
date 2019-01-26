@@ -12,6 +12,7 @@ class SharedViewModel : ViewModel() {
     private val newsQuery = DataService.REF_NEWS_HEADER.whereEqualTo("isPublished", true)
     private val testimonials = DataService.REF_TESTIMONIALS.whereEqualTo("isPublished", true)
     private val shopCategory =  DataService.REF_SHOP_CATEGORY.whereEqualTo("isEnabled", true)
+
     private val newsLiveData = FirebaseQueryLiveData(newsQuery)
     private val testimonialsLiveData = FirebaseQueryLiveData(testimonials)
     private val shopCategoryLiveData = FirebaseQueryLiveData(shopCategory)
@@ -31,6 +32,26 @@ class SharedViewModel : ViewModel() {
     fun getProductListDataSnapshotLiveData(category: String): LiveData<QuerySnapshot>? {
         val productListQuery = DataService.REF_ITEMS.whereEqualTo("category", category).whereEqualTo("isAvailable", true)
         return FirebaseQueryLiveData(productListQuery)
+    }
+
+    fun getCurrentUserOnProcessingOrdersLiveData(currentUserUid: String): LiveData<QuerySnapshot> {
+        val onProcessingOrdersQuery = DataService.REF_ORDERS.whereEqualTo("status", "none").whereEqualTo("userId", currentUserUid)
+        return FirebaseQueryLiveData(onProcessingOrdersQuery)
+    }
+
+    fun getCurrentUserOnProcessOfSendingOrdersLiveData(currentUserUid: String): LiveData<QuerySnapshot> {
+        val onProcessingOrdersQuery = DataService.REF_ORDERS.whereEqualTo("status", "processed").whereEqualTo("userId", currentUserUid)
+        return FirebaseQueryLiveData(onProcessingOrdersQuery)
+    }
+
+    fun getCurrentUserSentOrdersLiveData(currentUserUid: String): LiveData<QuerySnapshot> {
+        val onProcessingOrdersQuery = DataService.REF_ORDERS.whereEqualTo("status", "sent").whereEqualTo("userId", currentUserUid)
+        return FirebaseQueryLiveData(onProcessingOrdersQuery)
+    }
+
+    fun getCurrentUserCompletedOrdersLiveData(currentUserUid: String): LiveData<QuerySnapshot> {
+        val onProcessingOrdersQuery = DataService.REF_ORDERS.whereEqualTo("status", "delivered").whereEqualTo("userId", currentUserUid)
+        return FirebaseQueryLiveData(onProcessingOrdersQuery)
     }
 
 

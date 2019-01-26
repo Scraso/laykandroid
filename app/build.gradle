@@ -56,7 +56,8 @@ dependencies {
     def nav_version = "1.0.0-alpha08"
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version" // use -ktx for Kotlin
-    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version" // use -ktx for Kotlin
+    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'// use -ktx for Kotlin
 
 }
 
