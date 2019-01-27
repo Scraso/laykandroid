@@ -10,19 +10,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.R
 import com.example.tigran.laykandroid.TAG
+import com.example.tigran.laykandroid.adapters.HistoryCustomViewAdapter
+import com.example.tigran.laykandroid.models.HistoryProduct
 import com.example.tigran.laykandroid.models.Order
-import com.example.tigran.laykandroid.models.Product
 import com.example.tigran.laykandroid.models.SharedViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.android.synthetic.main.fragment_cart.*
 
 class HistoryFragment: Fragment() {
 
-    private val onProcessing = ArrayList<Product>()
-    private val onProcessingOfSending = ArrayList<Product>()
-    private val sentItem = ArrayList<Product>()
-    private val completed = ArrayList<Product>()
-    private val historyOrders = ArrayList<Order>()
+    private val onProcessing = ArrayList<HistoryProduct>()
+    private val onProcessingOfSending = ArrayList<HistoryProduct>()
+    private val sentItem = ArrayList<HistoryProduct>()
+    private val completed = ArrayList<HistoryProduct>()
+    private var historyOrders = arrayListOf<Order>()
 
     private lateinit var auth: FirebaseAuth
     var recyclerview: androidx.recyclerview.widget.RecyclerView? = null
@@ -34,16 +36,25 @@ class HistoryFragment: Fragment() {
         auth = FirebaseAuth.getInstance()
 
         fetchOrders {
-            historyOrders += Order("В обработке", onProcessing)
-            historyOrders += Order("В ожидании отправки", onProcessingOfSending)
-            historyOrders += Order("Отправлен", sentItem)
-            historyOrders += Order("Получен", completed)
-            recyclerview?.adapter?.notifyDataSetChanged()
-            Log.d(TAG, "History orders size is ${historyOrders.size}")
-            Log.d(TAG, "Data is fetched")
+            val onProcessingOrder = Order("В обработке", onProcessing)
+            val onProcessingOfSendingOrder = Order("В ожидании отправки", onProcessingOfSending)
+            val onSentOrder = Order("Отправлен", sentItem)
+            val onCompletedOrder = Order("Получен", completed)
+            historyOrders = arrayListOf(onProcessingOrder, onProcessingOfSendingOrder, onSentOrder, onCompletedOrder)
         }
 
+        val historyOrderAdapter = HistoryCustomViewAdapter()
+
+        recyclerview = view?.findViewById(R.id.historyRecyclerView)
+        recyclerCartView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        recyclerview?.adapter = historyOrderAdapter
+        historyOrderAdapter.setOrderList(historyOrders)
+
         return rootView
+    }
+
+    init {
+
     }
 
 
@@ -66,10 +77,12 @@ class HistoryFragment: Fragment() {
 
             snapshot?.documents?.forEach { doc ->
                 if (doc != null && doc.exists()) {
-                    val product = doc.toObject(Product::class.java)
+                    val product = doc.toObject(HistoryProduct::class.java)
                     if (product != null) onProcessing += product
                 }
             }
+
+            callback()
 
         })
 
@@ -82,7 +95,7 @@ class HistoryFragment: Fragment() {
 
             snapshot?.documents?.forEach { doc ->
                 if (doc != null && doc.exists()) {
-                    val product = doc.toObject(Product::class.java)
+                    val product = doc.toObject(HistoryProduct::class.java)
                     if (product != null) onProcessingOfSending += product
 
                 }
@@ -101,10 +114,13 @@ class HistoryFragment: Fragment() {
 
             snapshot?.documents?.forEach { doc ->
                 if (doc != null && doc.exists()) {
-                    val product = doc.toObject(Product::class.java)
+                    val product = doc.toObject(HistoryProduct::class.java)
                     if (product != null) sentItem += product
                 }
             }
+
+            callback()
+
         })
 
 
@@ -118,10 +134,12 @@ class HistoryFragment: Fragment() {
 
             snapshot?.documents?.forEach { doc ->
                 if (doc != null && doc.exists()) {
-                    val product = doc.toObject(Product::class.java)
+                    val product = doc.toObject(HistoryProduct::class.java)
                     if (product != null) completed += product
                 }
             }
+
+            callback()
 
         })
     }
