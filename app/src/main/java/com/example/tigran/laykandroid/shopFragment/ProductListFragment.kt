@@ -55,7 +55,7 @@ class ProductListFragment: Fragment()  {
             snapshot?.documents?.forEach { doc ->
                 if (doc != null && doc.exists()) {
                     val product = doc.toObject(Product::class.java)
-                    if (product != null) products += product
+                    if (product != null) products.add(product)
                     recyclerview?.adapter?.notifyDataSetChanged()
                 }
             }

@@ -109,7 +109,7 @@ class DeliveryDetailsFragment: Fragment() {
         return when (item.itemId) {
             R.id.action_done -> {
 
-                val currentUserUid = auth.currentUser?.uid
+                val currentUserUid = auth.currentUser?.uid ?: ""
                 val timestamp = Date().apply { java.lang.String.format("dd.MM.yyyy HH:mm") }
                 val itemCount = cartItems.size
                 var uploadCount = 0
@@ -123,7 +123,7 @@ class DeliveryDetailsFragment: Fragment() {
                     orderDetails["itemDocumentId"] = cartItem.documentId
                     orderDetails["ref"] = cartItem.ref
                     orderDetails["count"] = cartItem.count
-                    orderDetails["userId"] = currentUserUid!!
+                    orderDetails["userId"] = currentUserUid
                     orderDetails["avatarImageUrl"] = cartItem.avatarImageUrl
                     orderDetails["timestamp"] = timestamp
                     orderDetails["orderId"] = documentId.id
