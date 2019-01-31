@@ -6,39 +6,41 @@
 
     <View
             android:layout_width="8dp"
-            android:layout_height="100dp" android:id="@+id/view4" android:background="#FF9500"/>
+            android:layout_height="100dp" android:id="@+id/itemStatusView" android:background="#FF9500"/>
     <ImageView
-            android:layout_height="65dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView8"
-            android:layout_toEndOf="@+id/view4"
+            android:layout_height="65dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/itemAvatarImageView"
+            android:layout_toEndOf="@+id/itemStatusView"
             android:layout_marginStart="15dp" android:layout_marginTop="16dp" android:layout_width="65dp"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView7" android:layout_toEndOf="@+id/imageView8"
+            android:layout_height="wrap_content" android:id="@+id/itemNameTextView" android:layout_toEndOf="@+id/itemAvatarImageView"
             android:layout_marginStart="12dp" android:layout_marginTop="15dp" android:textSize="18sp"
             android:textStyle="bold"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_toEndOf="@+id/imageView8"
-            android:layout_marginStart="15dp" android:layout_marginTop="4dp" android:layout_below="@+id/textView7"
+            android:layout_height="wrap_content" android:id="@+id/itemRefTextView" android:layout_toEndOf="@+id/itemAvatarImageView"
+            android:layout_marginStart="15dp" android:layout_marginTop="4dp" android:layout_below="@+id/itemNameTextView"
             android:textSize="15sp" android:textColor="#8F8E94"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_toEndOf="@+id/imageView8"
-            android:layout_marginStart="15dp" android:layout_marginTop="4dp" android:layout_below="@+id/textView8"
+            android:layout_height="wrap_content" android:id="@+id/itemCountTextView"
+            android:layout_toEndOf="@+id/itemAvatarImageView"
+            android:layout_marginStart="15dp" android:layout_marginTop="4dp" android:layout_below="@+id/itemRefTextView"
             android:textSize="15sp" android:textColor="#8F8E94"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView10" android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content" android:id="@+id/itemPriceTextView"
+            android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp" android:layout_marginTop="28dp" android:textSize="15sp"
-            android:layout_below="@+id/textView12"/>
+            android:layout_below="@+id/itemDateTextView"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView12" android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content" android:id="@+id/itemDateTextView" android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp" android:layout_marginTop="17dp" android:layout_alignParentTop="true"
             android:textColor="#8F8E94"/>
 </RelativeLayout>

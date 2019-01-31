@@ -1,7 +1,6 @@
 package com.example.tigran.laykandroid.historyFragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.tigran.laykandroid.R
-import com.example.tigran.laykandroid.TAG
 import com.example.tigran.laykandroid.adapters.HistoryCustomViewAdapter
 import com.example.tigran.laykandroid.models.HistoryProduct
 import com.example.tigran.laykandroid.models.Order
@@ -43,18 +41,17 @@ class HistoryFragment: Fragment() {
             historyOrders = arrayListOf(onProcessingOrder, onProcessingOfSendingOrder, onSentOrder, onCompletedOrder)
         }
 
-        val historyOrderAdapter = HistoryCustomViewAdapter()
-
-        recyclerview = view?.findViewById(R.id.historyRecyclerView)
-        recyclerCartView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
-        recyclerview?.adapter = historyOrderAdapter
-        historyOrderAdapter.setOrderList(historyOrders)
-
         return rootView
     }
 
-    init {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val historyOrderAdapter = HistoryCustomViewAdapter()
+
+        recyclerview = view.findViewById(R.id.historyRecyclerView)
+        recyclerview?.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        recyclerview?.adapter = HistoryCustomViewAdapter()
+        historyOrderAdapter.setOrderList(historyOrders)
     }
 
 
