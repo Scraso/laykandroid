@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:background="@android:color/white">
+
+    <View
+            android:layout_width="8dp"
+            android:layout_height="100dp" android:id="@+id/historyItemStatusView" android:background="#FF9500"/>
+    <ImageView
+            android:layout_height="65dp" tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/historyItemAvatarImageView"
+            android:layout_toEndOf="@+id/historyItemStatusView"
+            android:layout_marginStart="15dp" android:layout_marginTop="16dp" android:layout_width="65dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/historyItemNameTextView"
+            android:layout_toEndOf="@+id/historyItemAvatarImageView"
+            android:layout_marginStart="12dp" android:layout_marginTop="15dp" android:textSize="18sp"
+            android:textStyle="bold"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/historyItemRefTextView"
+            android:layout_toEndOf="@+id/historyItemAvatarImageView"
+            android:layout_marginStart="15dp" android:layout_marginTop="4dp"
+            android:layout_below="@+id/historyItemNameTextView"
+            android:textSize="15sp" android:textColor="#8F8E94"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/historyItemCountTextView"
+            android:layout_toEndOf="@+id/historyItemAvatarImageView"
+            android:layout_marginStart="15dp" android:layout_marginTop="4dp"
+            android:layout_below="@+id/historyItemRefTextView"
+            android:textSize="15sp" android:textColor="#8F8E94"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/historyItemPriceTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp" android:layout_marginTop="28dp" android:textSize="15sp"
+            android:layout_below="@+id/historyItemDateTextView"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/historyItemDateTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp" android:layout_marginTop="17dp" android:layout_alignParentTop="true"
+            android:textColor="#8F8E94"/>
+</RelativeLayout>

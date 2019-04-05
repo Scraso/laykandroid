@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:text="Мы предоставляем различные способы покупки товара в магазине Layk, а именно:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView18" android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:textSize="16sp"/>
+    <TextView
+            android:text="•   Мобильное приложение"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView19" android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp" android:textSize="16sp"/>
+    <TextView
+            android:text="•   Instagram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/deliveryInstagramTextView" android:textSize="16sp"
+            android:layout_marginLeft="20dp" android:layout_marginTop="4dp"/>
+    <TextView
+            android:text="•   Facebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/deliveryFacebookTextView" android:textSize="16sp"
+            android:layout_marginLeft="20dp" android:layout_marginTop="4dp"/>
+    <TextView
+            android:text="Доставка и оплата"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView20" android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp" android:textSize="18sp" android:textStyle="bold"/>
+    <TextView
+            android:text="Доставка по Украине осуществляется согласно тарифов компании *Новая почта*."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView21" android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp" android:textSize="16sp"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView10"
+            android:layout_marginTop="12dp"/>
+    <TextView
+            android:text="•   Заказ будет доставлен в течении 1-3 рабочих дней."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView22" android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp" android:layout_marginRight="20dp" android:textSize="16sp"/>
+    <TextView
+            android:text="•   При заказе больше 2 единиц доставка бесплатная"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView23" android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp" android:layout_marginRight="20dp" android:textSize="16sp"/>
+    <TextView
+            android:text="•   Оплата наложенным платежом на отделении Новой почты."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView24" android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp" android:layout_marginRight="20dp" android:textSize="16sp"/>
+    <TextView
+            android:text="Контакты"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView25" android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp" android:textSize="18sp" android:textStyle="bold"/>
+    <TextView
+            android:text="Связаться с нашими менелжерами вы можете по телефону +380633720429 или написать на почту laykwear@gmail.com."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/deliveryContactInformationTextView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp" android:textSize="16sp" android:layout_marginRight="20dp"/>
+</LinearLayout>

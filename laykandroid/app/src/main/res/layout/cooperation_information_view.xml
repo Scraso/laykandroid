@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="198dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView9"/>
+    <TextView
+            android:text="Если вы хотите сделать крупный заказ или обсудить сотрудничество, то обязательно свяжитесь с нами и мы с радостью обсудим все детали."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView14" android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" android:layout_marginTop="20dp" android:textSize="16sp"/>
+    <TextView
+            android:text="Контактная информация:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView15" android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" android:textSize="18sp" android:textStyle="bold"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/cooperationPhoneNumberTextView"
+            android:text="•   Тел. +380633720429" android:textSize="16sp" android:layout_marginTop="12dp"
+            android:layout_marginLeft="40dp"/>
+    <TextView
+            android:text="•   Почта laykwear@gmail.com"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/cooperationEmailTextView" android:textSize="16sp"
+            android:layout_marginLeft="40dp" android:layout_marginTop="8dp"/>
+</LinearLayout>

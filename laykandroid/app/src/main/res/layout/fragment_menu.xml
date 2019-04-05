@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent" android:id="@+id/nav_menu">
+
+    <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/scrollView4" android:background="#f5f5f5">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                               android:layout_height="match_parent">
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:id="@+id/imageView3"
+                        android:scaleType="centerCrop" app:srcCompat="@drawable/header_cover"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" app:srcCompat="@mipmap/layk_menu"
+                        android:layout_gravity="center"
+                        android:id="@+id/imageView5"
+                        app:layout_constraintStart_toStartOf="@+id/imageView3" android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.14"/>
+                <Button
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" android:id="@+id/playBtn"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5" android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@android:drawable/ic_media_play"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                    android:text="НОВОСТИ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/newsTitleTextView"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp" android:layout_marginEnd="20dp" android:layout_marginBottom="18dp"
+                    android:textStyle="bold" android:textSize="15sp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="290dp" android:id="@+id/newsRecyclerView"/>
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="325dp" android:id="@+id/testimonialRecyclerView"
+                    android:background="#323843"/>
+            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                               android:layout_height="match_parent">
+
+                <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="255dp" android:id="@+id/SocialView" android:background="#f5f5f5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                <TextView
+                        android:text="Что бы получать последние новости и быть всегда в курсе, подписывайтесь на нас в Instagram, Twitter и Faceebook!"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/newsTitleTextView"
+                        android:layout_marginTop="50dp" app:layout_constraintTop_toTopOf="@+id/SocialView"
+                        android:textSize="17sp" android:textAlignment="center"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="60dp"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="60dp"
+                />
+                <Button
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/instagramBtn" app:layout_constraintEnd_toStartOf="@+id/twitterBtn"
+                        android:layout_marginEnd="30dp" app:layout_constraintBaseline_toBaselineOf="@+id/twitterBtn"
+                        android:background="@drawable/instragram"/>
+                <Button
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/twitterBtn"
+                        android:background="@drawable/twitter" android:layout_marginTop="30dp"
+                        app:layout_constraintTop_toBottomOf="@+id/newsTitleTextView"
+                        app:layout_constraintEnd_toEndOf="@+id/newsTitleTextView"
+                        app:layout_constraintStart_toStartOf="@+id/newsTitleTextView"/>
+                <Button
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/facebookBtn" app:layout_constraintStart_toEndOf="@+id/twitterBtn"
+                        android:layout_marginStart="30dp" app:layout_constraintBaseline_toBaselineOf="@+id/twitterBtn"
+                        android:background="@drawable/facebook"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

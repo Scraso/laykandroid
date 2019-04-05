@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="240dp" android:layout_marginLeft="20dp" android:layout_marginBottom="50dp"
+            app:cardCornerRadius="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="55dp">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/header_cover"
+                android:id="@+id/newsAvatarImageView" android:scaleType="centerCrop"/>
+        <TextView
+                android:text="Фотосессия и промо ролик"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp" android:layout_marginStart="20dp" android:layout_marginTop="20dp"
+                android:textSize="28sp" android:textStyle="bold" android:textColor="@android:color/white"
+                android:id="@+id/newsTitleTextView"/>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

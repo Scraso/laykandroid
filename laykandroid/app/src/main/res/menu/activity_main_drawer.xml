@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single" android:id="@+id/main">
+        <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_menu_home"
+                android:title="Меню"/>
+        <item
+                android:id="@+id/nav_shop"
+                android:icon="@drawable/ic_menu_shop"
+                android:title="Магазин"/>
+        <item
+                android:id="@+id/nav_history"
+                android:icon="@drawable/ic_menu_history"
+                android:title="История"/>
+        <item
+                android:id="@+id/nav_cart"
+                android:icon="@drawable/ic_menu_cart"
+                android:title="Корзина"/>
+        <item android:title="Информация" android:id="@+id/nav_information"
+              android:icon="@drawable/ic_menu_information"/>
+    </group>
+    <group
+            android:id="@+id/secondary">
+        <item android:title="Войти в магазин" android:icon="@drawable/ic_menu_user" android:id="@+id/nav_login"
+        />
+        <item android:title="Выйти из магазина" android:id="@+id/nav_logout" android:icon="@drawable/ic_menu_logout"/>
+    </group>
+
+</menu>

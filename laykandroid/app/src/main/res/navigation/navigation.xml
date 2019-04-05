@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
+            app:startDestination="@id/nav_home">
+
+    <fragment android:id="@+id/nav_shop" android:name="com.example.tigran.laykandroid.shopFragment.ShopFragment"
+              tools:layout="@layout/fragment_shop">
+        <action
+                android:id="@+id/next_action"
+                app:destination="@+id/product_list_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
+
+    </fragment>
+    <fragment android:id="@+id/product_list_dest"
+              android:name="com.example.tigran.laykandroid.shopFragment.ProductListFragment">
+        <action
+                android:id="@+id/toItemDetailsFragmentAction"
+                app:destination="@+id/itemDetailsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
+        <argument android:name="category" app:argType="string" android:defaultValue='""'/>
+    </fragment>
+
+    <fragment android:id="@+id/nav_home" android:name="com.example.tigran.laykandroid.homeFragment.MenuFragment"
+              tools:layout="@layout/fragment_menu">
+        <action android:id="@+id/toNewsDetails" app:destination="@id/newsDetailsFragment"/>
+
+    </fragment>
+
+    <fragment android:id="@+id/nav_cart" android:name="com.example.tigran.laykandroid.cartFragment.CartFragment"
+              tools:layout="@layout/fragment_cart">
+        <action android:id="@+id/action_nav_cart_to_nav_delivery" app:destination="@id/nav_delivery_details"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+        <action android:id="@+id/action_nav_cart_to_nav_delivery_details" app:destination="@id/nav_delivery_details"
+                app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment android:id="@+id/nav_history"
+              android:name="com.example.tigran.laykandroid.historyFragment.HistoryFragment"
+              tools:layout="@layout/fragment_history"/>
+    <fragment android:id="@+id/nav_information"
+              android:name="com.example.tigran.laykandroid.informationFragment.InformationFragment"
+              tools:layout="@layout/fragment_information">
+        <action android:id="@+id/toAboutInformationView" app:destination="@id/nav_about"/>
+        <action android:id="@+id/toCorInformationView" app:destination="@id/nav_corp"/>
+        <action android:id="@+id/toReturnInformationView" app:destination="@id/nav_return"/>
+        <action android:id="@+id/toDeliveryInformationView" app:destination="@id/nav_delivery"/>
+    </fragment>
+    <fragment android:id="@+id/itemDetailsFragment"
+              android:name="com.example.tigran.laykandroid.shopFragment.ItemDetailsFragment"
+              tools:layout="@layout/fragment_item_details">
+    </fragment>
+    <activity android:id="@+id/nav_login" android:name="com.example.tigran.laykandroid.LoginActivity"
+    />
+    <activity android:id="@+id/nav_videoView"
+              android:name="com.example.tigran.laykandroid.homeFragment.VideoPlayerActivity"
+    />
+    <fragment android:id="@+id/nav_delivery_details"
+              android:name="com.example.tigran.laykandroid.cartFragment.DeliveryDetailsFragment"
+    />
+    <fragment android:id="@+id/nav_processing"
+              android:name="com.example.tigran.laykandroid.cartFragment.ProcessingFragment"
+    >
+        <action android:id="@+id/action_processingFragment_to_nav_cart" app:destination="@id/nav_cart"
+                app:enterAnim="@anim/slide_in_right" app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left" app:popExitAnim="@anim/slide_out_right"
+                app:popUpTo="@+id/nav_cart"/>
+    </fragment>
+    <fragment android:id="@+id/nav_about"
+              android:name="com.example.tigran.laykandroid.informationFragment.AboutUsFragment"
+    />
+    <fragment android:id="@+id/nav_corp"
+              android:name="com.example.tigran.laykandroid.informationFragment.CooperationFragment"
+    />
+    <fragment android:id="@+id/nav_return"
+              android:name="com.example.tigran.laykandroid.informationFragment.ReturnFragment"
+    />
+    <fragment android:id="@+id/nav_delivery"
+              android:name="com.example.tigran.laykandroid.informationFragment.DeliveryFragment"
+    />
+    <fragment android:id="@+id/newsDetailsFragment"
+              android:name="com.example.tigran.laykandroid.homeFragment.NewsDetailsFragment"
+    >
+        <argument android:name="avatarImageUrl" app:argType="string"
+                  android:defaultValue='""'/>
+        <argument android:name="body_text" app:argType="string" android:defaultValue='""'/>
+        <argument android:name="documentId" app:argType="string" android:defaultValue='""'/>
+    </fragment>
+</navigation>
